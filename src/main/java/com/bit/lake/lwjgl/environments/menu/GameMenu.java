@@ -13,7 +13,6 @@ import com.bit.lake.lwjgl.environments.Environment;
 public final class GameMenu extends AbstractEnvironment {
 
     private static GameMenu instance;
-    private Button button;
 
     private GameMenu() {
         setLayout(new FlowLayoutContainer());
