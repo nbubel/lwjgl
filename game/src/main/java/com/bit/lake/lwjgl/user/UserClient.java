@@ -5,6 +5,7 @@ import com.bit.lake.lwjgl.api.GameClient;
 import javax.smartcardio.Card;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 /**
  * Created by michael on 02.04.16.
@@ -18,17 +19,17 @@ public final class UserClient extends UnicastRemoteObject implements GameClient 
     }
 
     @Override
-    public void attackedWith(Card card) {
+    public void attackedBy(List<Card> cards) {
 
     }
 
     @Override
-    public void updateHealth(int delta) {
+    public void switchPhase(User user, int timeout) {
 
     }
 
     @Override
-    public void switchPhase(GamePhase newPhase, int timeout) {
+    public void stateChanged(User user) {
 
     }
 
