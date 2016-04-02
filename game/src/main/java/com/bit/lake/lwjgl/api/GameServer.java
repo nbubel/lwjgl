@@ -5,6 +5,8 @@ import com.bit.lake.lwjgl.user.User;
 
 import javax.smartcardio.Card;
 import java.rmi.Remote;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -15,7 +17,8 @@ public interface GameServer extends Remote {
     void disconnect(UUID userId);
     void newGame(UUID userId);
 
-    void attackWith(Card card, UUID userId);
-    void defendWith(Card card, UUID userId);
-    void finishPhase(GamePhase phase, UUID userId);
+    User setCard(Card card, UUID userId);
+    User attack(List<Integer> cardIds, UUID userId);
+    User defend(Map<Card, List<Card>> mapping, UUID userId);
+    void finishPhase(UUID userId);
 }

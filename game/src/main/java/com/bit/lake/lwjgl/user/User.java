@@ -1,7 +1,5 @@
 package com.bit.lake.lwjgl.user;
 
-import org.newdawn.slick.state.GameState;
-
 import java.util.UUID;
 
 /**
@@ -9,7 +7,7 @@ import java.util.UUID;
  */
 public final class User {
     private UUID userId;
-    private GameState gameState;
+    private GamePhase gamePhase;
 
     public User() {
         userId = UUID.randomUUID();
@@ -19,11 +17,11 @@ public final class User {
         return userId;
     }
 
-    public GameState getGameState() {
-        return gameState;
+    public GamePhase getGamePhase() {
+        return gamePhase;
     }
 
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
+    public void setGamePhase(GamePhase gamePhase) {
+        this.gamePhase = gamePhase;
     }
 }
