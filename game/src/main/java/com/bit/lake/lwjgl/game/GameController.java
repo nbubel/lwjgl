@@ -41,7 +41,7 @@ public final class GameController {
         initializeGame();
 
         while (!Display.isCloseRequested()) {
-
+            glClear(GL_COLOR_BUFFER_BIT);
             handleStates();
 
             Display.update();
