@@ -49,7 +49,7 @@ public final class GameConfiguration {
     public List<Hashtag> getHashtags() {
         String hashtagString = configuration.getString("game.hashtags");
         List<Hashtag> hashtags = new ArrayList<>();
-        Arrays.asList(hashtagString.split(";")).forEach(hashtag -> hashtags.add(new Hashtag(0,0, "", TargetAction.quit)));
+        Arrays.asList(hashtagString.split(";")).forEach(hashtag -> hashtags.add(new Hashtag(0,0, hashtag, TargetAction.quit)));
         return hashtags;
     }
 

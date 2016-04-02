@@ -4,6 +4,8 @@ import com.bit.lake.lwjgl.components.ComponentTextureName;
 import com.bit.lake.lwjgl.components.LocalizationKey;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
+import com.bit.lake.lwjgl.components.hashtag.Hashtag;
+import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.entities.Entity;
 import com.bit.lake.lwjgl.entities.EntityTextureName;
@@ -14,6 +16,8 @@ import com.bit.lake.lwjgl.game.GameController;
 import com.bit.lake.lwjgl.game.GameState;
 import com.bit.lake.lwjgl.utils.Timer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -26,9 +30,18 @@ public final class GameMenu extends AbstractEnvironment {
     private static GameMenu instance;
     private GameController gameController;
     private Entity background;
+    private List<Hashtag> hashtags = new ArrayList<>();
 
     private GameMenu() {
+        GameConfiguration configuration = new GameConfiguration();
         background = new BackgroundEntity(0, 0, EntityTextureName.menuBackgroundTexture);
+        float startX = 10;
+        float startY = 40;
+        for (Hashtag tag : configuration.getHashtags()) {
+            tag.setY(startY);
+            startY += 50;
+        }
+
         setLayout(new FlowLayoutContainer());
         Button startButton = new Button(10, 10, TargetAction.quit, ComponentTextureName.menuButton);
         startButton.addObserver(this);
@@ -70,5 +83,6 @@ public final class GameMenu extends AbstractEnvironment {
     public void render(Timer timer) {
         background.render();
         super.render(timer);
+
     }
 }
