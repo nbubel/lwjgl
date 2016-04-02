@@ -3,8 +3,6 @@ package com.bit.lake.lwjgl.entities;
 import com.bit.lake.lwjgl.utils.InternalTextureLoader;
 import com.bit.lake.lwjgl.utils.RenderingUtils;
 import org.newdawn.slick.opengl.Texture;
-
-import static org.lwjgl.opengl.GL11.*;
 /**
  * @author Patrick Wilmes
  */
