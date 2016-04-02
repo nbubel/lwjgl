@@ -4,14 +4,15 @@ import com.bit.lake.lwjgl.user.GamePhase;
 import com.bit.lake.lwjgl.user.User;
 
 import javax.smartcardio.Card;
+import java.util.List;
 
 /**
  * Created by michael on 02.04.16.
  */
 public interface GameClient {
-    void attackedWith(Card card);
-    void updateHealth(int delta);
-    void switchPhase(GamePhase newPhase, int timeout);
+    void attackedBy(List<Card> cards);
+    void switchPhase(User user, int timeout);
+    void stateChanged(User user);
 
     void defeated();
     void win();
