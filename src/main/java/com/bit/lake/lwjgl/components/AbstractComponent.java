@@ -23,8 +23,9 @@ public abstract class AbstractComponent extends Observable implements Component 
     private TrueTypeFont trueTypeFont;
     private boolean cooldown;
     private String componentText;
+    private TargetAction targetAction;
 
-    public AbstractComponent(final float x, final float y, final Texture texture, final LocalizationKey localizationKey) {
+    public AbstractComponent(final float x, final float y, final Texture texture, final LocalizationKey localizationKey, final TargetAction targetAction) {
         GameConfiguration gameConfiguration = new GameConfiguration();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("game", gameConfiguration.getConfiguredLocale());
         setX(x);
@@ -34,6 +35,7 @@ public abstract class AbstractComponent extends Observable implements Component 
         height = baseTexture.getTextureHeight();
         trueTypeFont = InternalFontLoader.loadFont();
         componentText = resourceBundle.getString(localizationKey.getKey());
+        this.targetAction = targetAction;
     }
 
     @Override
