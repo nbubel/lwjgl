@@ -1,5 +1,9 @@
 package com.bit.lake.lwjgl.api;
 
+import com.bit.lake.lwjgl.user.GamePhase;
+import com.bit.lake.lwjgl.user.User;
+
+import javax.smartcardio.Card;
 import java.rmi.Remote;
 
 /**
