@@ -2,7 +2,6 @@ package com.bit.lake.lwjgl.game;
 
 import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.environments.Environment;
-import com.bit.lake.lwjgl.utils.GameState;
 import com.bit.lake.lwjgl.utils.Timer;
 import org.apache.log4j.Logger;
 import org.lwjgl.LWJGLException;
@@ -52,6 +51,7 @@ public final class GameController {
     }
 
     private void initializeGame() {
+        LOGGER.info("");
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);

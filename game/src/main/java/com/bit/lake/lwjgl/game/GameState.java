@@ -1,4 +1,4 @@
-package com.bit.lake.lwjgl.utils;
+package com.bit.lake.lwjgl.game;
 
 /**
  * @author Patrick Wilmes
