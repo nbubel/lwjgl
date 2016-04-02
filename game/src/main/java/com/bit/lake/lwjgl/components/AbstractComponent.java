@@ -11,8 +11,6 @@ import org.newdawn.slick.opengl.Texture;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
-import static org.lwjgl.opengl.GL11.*;
-
 /**
  * @author Patrick Wilmes
  */
@@ -25,6 +23,16 @@ public abstract class AbstractComponent extends Observable implements Component 
     private boolean cooldown;
     private String componentText;
     private TargetAction targetAction;
+
+    public AbstractComponent(final float x, final float y, final String text, final TargetAction targetAction) {
+        setX(x);
+        setY(y);
+        width = 100;
+        height = 50;
+        trueTypeFont = InternalFontLoader.loadFont();
+        componentText = text;
+        this.targetAction = targetAction;
+    }
 
     public AbstractComponent(final float x, final float y, final Texture texture, final LocalizationKey localizationKey, final TargetAction targetAction) {
         GameConfiguration gameConfiguration = new GameConfiguration();

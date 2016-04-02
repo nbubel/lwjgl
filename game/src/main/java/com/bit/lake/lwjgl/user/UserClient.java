@@ -24,6 +24,7 @@ public final class UserClient extends UnicastRemoteObject implements GameClient 
         super(port);
     }
 
+
     @Override
     public void attackedBy(List<Card> cards) {
 

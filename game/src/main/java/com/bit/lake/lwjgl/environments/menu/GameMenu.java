@@ -1,8 +1,11 @@
 package com.bit.lake.lwjgl.environments.menu;
 
+import com.bit.lake.lwjgl.components.ComponentTextureName;
 import com.bit.lake.lwjgl.components.LocalizationKey;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
+import com.bit.lake.lwjgl.components.hashtag.Hashtag;
+import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.entities.Entity;
 import com.bit.lake.lwjgl.entities.EntityTextureName;
@@ -15,6 +18,8 @@ import com.bit.lake.lwjgl.game.GameState;
 import com.bit.lake.lwjgl.utils.LaunchJre;
 import com.bit.lake.lwjgl.utils.Timer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -32,9 +37,9 @@ public final class GameMenu extends AbstractEnvironment {
     private GameMenu() {
         background = new BackgroundEntity(0, 0, EntityTextureName.menuBackgroundTexture);
         setLayout(new FlowLayoutContainer());
-        Button startButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
+        Button startButton = new Button(10, 10, TargetAction.newGame, ComponentTextureName.menuButton);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.joinGame);
+        Button exitButton = new Button(10, 10, TargetAction.joinGame, ComponentTextureName.menuButton);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);
