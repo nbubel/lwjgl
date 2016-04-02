@@ -7,6 +7,7 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
 
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -14,7 +15,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * @author Patrick Wilmes
  */
-public abstract class AbstractComponent implements Component {
+public abstract class AbstractComponent extends Observable implements Component {
     private float x, y;
     private float width, height;
     private Component.ComponentState state;
