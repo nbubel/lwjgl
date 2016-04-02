@@ -9,7 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * Created by michael on 02.04.16.
  */
-public class UserClient extends UnicastRemoteObject implements GameClient {
+public final class UserClient extends UnicastRemoteObject implements GameClient {
     protected UserClient() throws RemoteException {
     }
 

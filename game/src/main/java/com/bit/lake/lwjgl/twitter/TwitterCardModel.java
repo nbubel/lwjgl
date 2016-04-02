@@ -1,5 +1,7 @@
 package com.bit.lake.lwjgl.twitter;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class TwitterCardModel {
 
     private Long userId;
     private String tweetText;
+    private ByteArrayInputStream profileImage;
 
     public int getAttack() {
         return attack;
@@ -68,6 +71,14 @@ public class TwitterCardModel {
 
     public void setLive(int live) {
         this.live = live;
+    }
+
+    public ByteArrayInputStream getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(ByteArrayInputStream profileImage) {
+        this.profileImage = profileImage;
     }
 
     @Override
