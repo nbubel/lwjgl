@@ -7,7 +7,6 @@ import com.bit.lake.lwjgl.utils.Timer;
 import org.apache.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.ImageIOImageData;
 
 import javax.imageio.ImageIO;
