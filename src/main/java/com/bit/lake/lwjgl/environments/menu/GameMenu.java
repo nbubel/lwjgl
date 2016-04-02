@@ -5,6 +5,8 @@ import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
 
+import java.util.Observable;
+
 /**
  * Environments should always be singletons.
  *
@@ -25,4 +27,8 @@ public final class GameMenu extends AbstractEnvironment {
         return instance;
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 }

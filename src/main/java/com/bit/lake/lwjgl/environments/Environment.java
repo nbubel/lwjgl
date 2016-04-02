@@ -7,10 +7,12 @@ import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.menu.GameMenu;
 import com.bit.lake.lwjgl.utils.GameState;
 
+import java.util.Observer;
+
 /**
  * @author Patrick Wilmes
  */
-public interface Environment {
+public interface Environment extends Observer {
 
     static Environment getInstance(GameState currentState) {
         switch (currentState) {
