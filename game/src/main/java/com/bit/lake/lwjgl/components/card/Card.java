@@ -8,7 +8,7 @@ import com.bit.lake.lwjgl.components.ComponentTextureName;
  */
 public class Card extends AbstractComponent {
 
-    private String name;
+    protected String name;
 
     private int converetedResources;
     private int costsResourceZero;
@@ -18,7 +18,8 @@ public class Card extends AbstractComponent {
     private int costsResourceFour;
     private int costsResourceFive;
 
-    public Card(float x, float y, ComponentTextureName textureName) {
+    public Card(float x, float y, ComponentTextureName textureName)
+    {
         super(x, y, textureName);
     }
 
