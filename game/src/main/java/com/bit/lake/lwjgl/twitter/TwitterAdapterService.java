@@ -58,9 +58,9 @@ public class TwitterAdapterService {
 
     private TwitterCardModel mapTweet(Status tweet) {
         TwitterCardModel model = new TwitterCardModel();
-        model.setLive(tweet.getUser().getFavouritesCount());
-        model.setAttack(tweet.getUser().getFollowersCount());
-        model.setDefence(tweet.getUser().getFriendsCount());
+        model.setLive(tweet.getUser().getFavouritesCount() % 1000);
+        model.setAttack(tweet.getUser().getFollowersCount() % 1000);
+        model.setDefence(tweet.getUser().getFriendsCount() % 1000);
         model.setTitle(tweet.getUser().getName());
 
         model.setUserId(tweet.getUser().getId());
