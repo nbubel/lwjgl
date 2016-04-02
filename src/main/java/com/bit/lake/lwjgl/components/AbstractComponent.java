@@ -2,6 +2,8 @@ package com.bit.lake.lwjgl.components;
 
 import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.utils.InternalFontLoader;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
 
@@ -45,6 +47,9 @@ public abstract class AbstractComponent implements Component {
 
     @Override
     public void renderComponent() {
+        if (!cooldown)
+            handleMouseEvent();
+
         baseTexture.bind();
         glBegin(GL_QUADS);
         {
@@ -64,5 +69,25 @@ public abstract class AbstractComponent implements Component {
         int textWidth = trueTypeFont.getWidth(componentText);
         int textHeight = trueTypeFont.getHeight();
         trueTypeFont.drawString(x + (width / 2) - textWidth, y + (height / 2) - textHeight, componentText);
+    }
+
+    protected abstract void handleMouseEvent();
+
+    protected boolean isMouseClickInRange() {
+        float mouseX = Mouse.getX();
+        float mouseY = Display.getHeight() - Mouse.getY();
+        return mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height;
+    }
+
+    protected void triggerCooldown() {
+        cooldown = true;
+        new Thread(() -> {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            cooldown = false;
+        }).run();
     }
 }
