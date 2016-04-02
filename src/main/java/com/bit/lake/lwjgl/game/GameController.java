@@ -1,6 +1,7 @@
 package com.bit.lake.lwjgl.game;
 
 import com.bit.lake.lwjgl.environments.Environment;
+import com.bit.lake.lwjgl.environments.menu.GameMenu;
 import org.apache.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -66,6 +67,7 @@ public final class GameController {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         timer = new Timer();
 
+        environmentMap.put(GameState.MENU, new GameMenu());
     }
 
     private void handleStates() {
