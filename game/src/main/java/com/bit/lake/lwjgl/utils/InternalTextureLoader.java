@@ -22,4 +22,13 @@ public final class InternalTextureLoader {
         }
         return new EmptyTexture();
     }
+
+    public static Texture loadTexture(InputStream in) {
+        try {
+            return TextureLoader.getTexture("PNG", in);
+        } catch (IOException e) {
+            Logger.getLogger(InternalTextureLoader.class).error("Cannot load texture from stream!", e);
+        }
+        return new EmptyTexture();
+    }
 }
