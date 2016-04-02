@@ -22,6 +22,7 @@ public final class GameController {
     private static final Logger LOGGER = Logger.getLogger(GameController.class);
 
     private Timer timer;
+    private GameState currentState = GameState.MENU;
 
     private enum GameState {
         MENU, LEVEL
@@ -49,10 +50,22 @@ public final class GameController {
         timer = new Timer();
 
         while (!Display.isCloseRequested()) {
+
+            handleStates();
+
             Display.update();
             Display.sync(60);
         }
         Display.destroy();
+    }
+
+    private void handleStates() {
+        switch (currentState) {
+            case MENU:
+                break;
+            case LEVEL:
+                break;
+        }
     }
 
     private ByteBuffer[] loadIcon() {
