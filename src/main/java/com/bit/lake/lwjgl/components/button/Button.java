@@ -20,16 +20,6 @@ public class Button extends AbstractComponent {
     }
 
     @Override
-    public float getWidth() {
-        return 0;
-    }
-
-    @Override
-    public float getHeight() {
-        return 0;
-    }
-
-    @Override
     protected void handleMouseEvent() {
         if (Mouse.isButtonDown(MouseButton.LEFT)) {
             if (isMouseClickInRange()) {

@@ -47,6 +47,16 @@ public abstract class AbstractComponent extends Observable implements Component 
     }
 
     @Override
+    public float getWidth() {
+        return width;
+    }
+
+    @Override
+    public float getHeight() {
+        return height;
+    }
+
+    @Override
     public void renderComponent() {
         if (!cooldown)
             handleMouseEvent();
