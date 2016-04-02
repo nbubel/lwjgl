@@ -7,7 +7,6 @@ import com.bit.lake.lwjgl.utils.TextureName;
  */
 public enum ComponentTextureName implements TextureName {
     menuButton("textures/menu_button.png");
-
     private String textureName;
 
     ComponentTextureName(String textureName) {

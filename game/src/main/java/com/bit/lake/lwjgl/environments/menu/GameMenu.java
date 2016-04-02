@@ -22,9 +22,9 @@ public final class GameMenu extends AbstractEnvironment {
 
     private GameMenu() {
         setLayout(new FlowLayoutContainer());
-        Button startButton = new Button(10, 10, LocalizationKey.btnMenuText, TargetAction.quit);
+        Button startButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, LocalizationKey.btnMenuText, TargetAction.quit);
+        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);
