@@ -28,6 +28,16 @@ public abstract class AbstractEntity implements Entity {
     }
 
     @Override
+    public float getX() {
+        return x;
+    }
+
+    @Override
+    public float getY() {
+        return y;
+    }
+
+    @Override
     public float getWidth() {
         return width;
     }
