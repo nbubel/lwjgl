@@ -18,7 +18,9 @@ public final class GameMenu extends AbstractEnvironment {
 
     private GameMenu() {
         setLayout(new FlowLayoutContainer());
-        add(new Button(10, 10));
+        Button button = new Button(10, 10);
+        button.addObserver(this);
+        add(button);
     }
 
     public static Environment newInstance() {
