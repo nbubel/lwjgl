@@ -7,6 +7,7 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
 
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -14,7 +15,7 @@ import static org.lwjgl.opengl.GL11.*;
 /**
  * @author Patrick Wilmes
  */
-public abstract class AbstractComponent implements Component {
+public abstract class AbstractComponent extends Observable implements Component {
     private float x, y;
     private float width, height;
     private Component.ComponentState state;
@@ -22,8 +23,9 @@ public abstract class AbstractComponent implements Component {
     private TrueTypeFont trueTypeFont;
     private boolean cooldown;
     private String componentText;
+    private TargetAction targetAction;
 
-    public AbstractComponent(final float x, final float y, final Texture texture, final LocalizationKey localizationKey) {
+    public AbstractComponent(final float x, final float y, final Texture texture, final LocalizationKey localizationKey, final TargetAction targetAction) {
         GameConfiguration gameConfiguration = new GameConfiguration();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("game", gameConfiguration.getConfiguredLocale());
         setX(x);
@@ -33,6 +35,7 @@ public abstract class AbstractComponent implements Component {
         height = baseTexture.getTextureHeight();
         trueTypeFont = InternalFontLoader.loadFont();
         componentText = resourceBundle.getString(localizationKey.getKey());
+        this.targetAction = targetAction;
     }
 
     @Override
@@ -43,6 +46,16 @@ public abstract class AbstractComponent implements Component {
     @Override
     public void setY(float y) {
         this.y = y;
+    }
+
+    @Override
+    public float getWidth() {
+        return width;
+    }
+
+    @Override
+    public float getHeight() {
+        return height;
     }
 
     @Override
@@ -89,5 +102,10 @@ public abstract class AbstractComponent implements Component {
             }
             cooldown = false;
         }).run();
+    }
+
+    @Override
+    public TargetAction getAction() {
+        return targetAction;
     }
 }

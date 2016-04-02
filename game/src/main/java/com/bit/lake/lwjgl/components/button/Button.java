@@ -3,6 +3,7 @@ package com.bit.lake.lwjgl.components.button;
 import com.bit.lake.lwjgl.components.AbstractComponent;
 import com.bit.lake.lwjgl.components.ComponentTextureName;
 import com.bit.lake.lwjgl.components.LocalizationKey;
+import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.utils.InternalTextureLoader;
 import com.bit.lake.lwjgl.utils.MouseButton;
 import org.apache.log4j.Logger;
@@ -15,18 +16,8 @@ public class Button extends AbstractComponent {
 
     private static final Logger LOGGER = Logger.getLogger(Button.class);
 
-    public Button(float x, float y) {
-        super(x, y, InternalTextureLoader.loadTexture(ComponentTextureName.menuButton), LocalizationKey.btnMenuText);
-    }
-
-    @Override
-    public float getWidth() {
-        return 0;
-    }
-
-    @Override
-    public float getHeight() {
-        return 0;
+    public Button(float x, float y, final LocalizationKey text, final TargetAction targetAction) {
+        super(x, y, InternalTextureLoader.loadTexture(ComponentTextureName.menuButton), text, targetAction);
     }
 
     @Override
@@ -35,6 +26,8 @@ public class Button extends AbstractComponent {
             if (isMouseClickInRange()) {
                 LOGGER.info("Clicked");
                 triggerCooldown();
+                setChanged();
+                notifyObservers();
             }
         }
     }
