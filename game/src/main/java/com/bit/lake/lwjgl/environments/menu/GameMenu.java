@@ -11,8 +11,10 @@ import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.game.GameController;
 import com.bit.lake.lwjgl.game.GameState;
+import com.bit.lake.lwjgl.utils.LaunchJre;
 import com.bit.lake.lwjgl.utils.Timer;
 
+import java.util.Arrays;
 import java.util.Observable;
 
 /**
@@ -31,7 +33,7 @@ public final class GameMenu extends AbstractEnvironment {
         setLayout(new FlowLayoutContainer());
         Button startButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.newGame);
+        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.joinGame);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);
@@ -59,6 +61,8 @@ public final class GameMenu extends AbstractEnvironment {
                     gameController.shutdown();
                     break;
                 case newGame:
+                    LaunchJre.launch(Arrays.asList(""));
+                case joinGame:
                     gameController.updateState(GameState.level);
                     break;
             }

@@ -1,5 +1,7 @@
 package com.bit.lake.lwjgl.utils;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -38,22 +40,15 @@ public class LaunchJre {
         return exe;
     }
 
-    public static int launch(List<String> cmdarray) throws IOException,
-            InterruptedException {
-        byte[] buffer = new byte[1024];
-
+    public static Process launch(List<String> cmdarray) {
         ProcessBuilder processBuilder = new ProcessBuilder(cmdarray);
         processBuilder.redirectErrorStream(true);
-        Process process = processBuilder.start();
-        InputStream in = process.getInputStream();
-        while (true) {
-            int r = in.read(buffer);
-            if (r <= 0) {
-                break;
-            }
-            System.out.write(buffer, 0, r);
+        try {
+            return processBuilder.start();
+        } catch (IOException e) {
+            Logger.getLogger(LaunchJre.class).error(e.getMessage());
         }
-        return process.waitFor();
+        return null;
     }
 
     public static void main(String[] args) {
@@ -63,14 +58,8 @@ public class LaunchJre {
             List<String> cmdarray = new ArrayList<String>();
             cmdarray.add(getJreExecutable().toString());
             cmdarray.add("-version");
-            int retValue = launch(cmdarray);
-            if (retValue != 0) {
-                System.err.println("Error code " + retValue);
-            }
-            System.out.println("OK");
+            launch(cmdarray);
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
