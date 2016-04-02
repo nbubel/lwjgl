@@ -2,6 +2,11 @@ package com.bit.lake.lwjgl.twitter;
 
 import twitter4j.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +30,7 @@ public class TwitterAdapterService {
                                 .sinceId(start)
                                 .count(PAG_SIZE)).getTweets());
                 start += PAG_SIZE;
-            } while (retList.size() <= numberOfCards);
+            } while (retList.size() < numberOfCards);
 
         } catch (TwitterException e) {
             throw new RuntimeException("Cannot connect to Twitter.", e);
@@ -53,9 +58,9 @@ public class TwitterAdapterService {
 
     private TwitterCardModel mapTweet(Status tweet) {
         TwitterCardModel model = new TwitterCardModel();
-        model.setLive(tweet.getUser().getFavouritesCount());
-        model.setAttack(tweet.getUser().getFollowersCount());
-        model.setDefence(tweet.getUser().getFriendsCount());
+        model.setLive(tweet.getUser().getFavouritesCount() % 1000);
+        model.setAttack(tweet.getUser().getFollowersCount() % 1000);
+        model.setDefence(tweet.getUser().getFriendsCount() % 1000);
         model.setTitle(tweet.getUser().getName());
 
         model.setUserId(tweet.getUser().getId());
@@ -65,7 +70,26 @@ public class TwitterAdapterService {
                 tweet.getHashtagEntities()) {
             model.getTags().add(entity.getText());
         }
+
+        model.setProfileImage(readProfileImage(tweet));
+
         return model;
+    }
+
+    private ByteArrayInputStream readProfileImage(Status tweet) {
+
+        try {
+            URL url = new URL(tweet.getUser().getProfileImageURL());
+
+
+            BufferedImage image = ImageIO.read(url.openStream());
+            ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", byteArrayOut);
+            byte[] resultingBytes = byteArrayOut.toByteArray();
+            return new ByteArrayInputStream(resultingBytes);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

@@ -5,7 +5,8 @@ package com.bit.lake.lwjgl.components;
  */
 public enum LocalizationKey {
     menuButtonExit("menu.btn.exit"),
-    menuButtonNewGame("menu.btn.newGame");
+    menuButtonNewGame("menu.btn.newGame"),
+    gameNextRound("game.next.round");
 
     private String key;
 

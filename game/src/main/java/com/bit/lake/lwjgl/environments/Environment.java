@@ -3,11 +3,10 @@ package com.bit.lake.lwjgl.environments;
 
 import com.bit.lake.lwjgl.components.Component;
 import com.bit.lake.lwjgl.container.Container;
-import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.game.GameEnvironment;
 import com.bit.lake.lwjgl.environments.menu.GameMenu;
 import com.bit.lake.lwjgl.game.GameController;
-import com.bit.lake.lwjgl.utils.GameState;
+import com.bit.lake.lwjgl.game.GameState;
 import com.bit.lake.lwjgl.utils.Timer;
 
 import java.util.Observer;

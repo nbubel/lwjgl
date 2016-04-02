@@ -7,7 +7,7 @@ import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.game.GameController;
-import com.bit.lake.lwjgl.utils.GameState;
+import com.bit.lake.lwjgl.game.GameState;
 
 import java.util.Observable;
 
