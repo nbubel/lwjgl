@@ -1,6 +1,8 @@
 package com.bit.lake.lwjgl.environments.menu;
 
 import com.bit.lake.lwjgl.components.button.Button;
+import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
+import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
 
 /**
@@ -8,13 +10,14 @@ import com.bit.lake.lwjgl.environments.Environment;
  *
  * @author Patrick Wilmes
  */
-public final class GameMenu implements Environment {
+public final class GameMenu extends AbstractEnvironment {
 
     private static GameMenu instance;
     private Button button;
 
     private GameMenu() {
-        button = new Button(10, 10);
+        setLayout(new FlowLayoutContainer());
+        add(new Button(10, 10));
     }
 
     public static Environment newInstance() {
@@ -23,8 +26,4 @@ public final class GameMenu implements Environment {
         return instance;
     }
 
-    @Override
-    public void render() {
-        button.renderComponent();
-    }
 }
