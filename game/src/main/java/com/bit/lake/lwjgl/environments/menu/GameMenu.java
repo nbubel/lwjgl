@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl.environments.menu;
 
+import com.bit.lake.lwjgl.components.ComponentTextureName;
 import com.bit.lake.lwjgl.components.LocalizationKey;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
@@ -29,9 +30,9 @@ public final class GameMenu extends AbstractEnvironment {
     private GameMenu() {
         background = new BackgroundEntity(0, 0, EntityTextureName.menuBackgroundTexture);
         setLayout(new FlowLayoutContainer());
-        Button startButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
+        Button startButton = new Button(10, 10, TargetAction.quit, ComponentTextureName.menuButton);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.newGame);
+        Button exitButton = new Button(10, 10, TargetAction.newGame, ComponentTextureName.menuButton);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);

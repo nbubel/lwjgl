@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl.environments.game;
 
+import com.bit.lake.lwjgl.components.ComponentTextureName;
 import com.bit.lake.lwjgl.components.LocalizationKey;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
@@ -20,7 +21,7 @@ public class GameEnvironment extends AbstractEnvironment {
 
     private GameEnvironment() {
         FlowLayoutContainer container = new FlowLayoutContainer();
-        container.add(new Button(10, 10, LocalizationKey.gameNextRound, TargetAction.nextRound));
+        container.add(new Button(10, 10, TargetAction.nextRound, ComponentTextureName.menuButton));
         setLayout(container);
     }
 
