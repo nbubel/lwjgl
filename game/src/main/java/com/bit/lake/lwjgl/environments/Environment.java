@@ -19,8 +19,7 @@ public interface Environment extends Observer {
     static Environment getInstance(GameState currentState, GameController gameController) {
         switch (currentState) {
             case menu:
-                Environment environment = GameMenu.newInstance(gameController);
-                return environment;
+                return GameMenu.newInstance(gameController);
         }
         return null;
     }
