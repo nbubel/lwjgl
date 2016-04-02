@@ -7,6 +7,8 @@ import java.rmi.Remote;
  */
 public interface GameServer extends Remote {
     User connect();
+
     void playCard(User user, Card card);
+
     void changeGameState(User user, GamePhase phase);
 }

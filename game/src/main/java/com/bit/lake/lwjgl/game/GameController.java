@@ -70,7 +70,7 @@ public final class GameController {
 
     private ByteBuffer[] loadIcon() {
         try {
-            return new ByteBuffer[]{ new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("resources/game.png")), false, false, null)};
+            return new ByteBuffer[]{new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("resources/game.png")), false, false, null)};
         } catch (IOException e) {
             LOGGER.warn("Cannot load application icon versus.ico!", e);
         }
