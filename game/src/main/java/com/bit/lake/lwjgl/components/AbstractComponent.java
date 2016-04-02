@@ -2,6 +2,7 @@ package com.bit.lake.lwjgl.components;
 
 import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.utils.InternalFontLoader;
+import com.bit.lake.lwjgl.utils.RenderingUtils;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.TrueTypeFont;
@@ -63,22 +64,7 @@ public abstract class AbstractComponent extends Observable implements Component 
         if (!cooldown)
             handleMouseEvent();
 
-        baseTexture.bind();
-        glBegin(GL_QUADS);
-        {
-            glTexCoord2d(0, 0);
-            glVertex2f(x, y);
-
-            glTexCoord2d(1, 0);
-            glVertex2f(x + width, y);
-
-            glTexCoord2d(1, 1);
-            glVertex2f(x + width, y + height);
-
-            glTexCoord2d(0, 1);
-            glVertex2f(x, y + height);
-        }
-        glEnd();
+        RenderingUtils.renderTexturedQuad(x, y, width, height, baseTexture);
         int textWidth = trueTypeFont.getWidth(componentText);
         int textHeight = trueTypeFont.getHeight();
         trueTypeFont.drawString(x + (width / 2) - textWidth, y + (height / 2) - textHeight, componentText);
