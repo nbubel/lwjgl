@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl.game;
 
+import com.bit.lake.lwjgl.environments.Environment;
 import org.apache.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -10,6 +11,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -23,6 +26,7 @@ public final class GameController {
 
     private Timer timer;
     private GameState currentState = GameState.MENU;
+    private Map<GameState, Environment> environmentMap = new HashMap<>();
 
     private enum GameState {
         MENU, LEVEL
@@ -40,14 +44,7 @@ public final class GameController {
     }
 
     public void start() {
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
-        glMatrixMode(GL_MODELVIEW);
-        glEnable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        timer = new Timer();
+        initializeGame();
 
         while (!Display.isCloseRequested()) {
 
@@ -57,6 +54,18 @@ public final class GameController {
             Display.sync(60);
         }
         Display.destroy();
+    }
+
+    private void initializeGame() {
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
+        glMatrixMode(GL_MODELVIEW);
+        glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        timer = new Timer();
+
     }
 
     private void handleStates() {
