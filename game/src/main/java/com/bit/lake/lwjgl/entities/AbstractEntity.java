@@ -15,6 +15,8 @@ public abstract class AbstractEntity implements Entity {
         this.x = x;
         this.y = y;
         texture = InternalTextureLoader.loadTexture(textureName);
+        width = texture.getTextureWidth();
+        height = texture.getTextureHeight();
     }
 
     @Override
