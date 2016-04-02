@@ -20,6 +20,8 @@ public interface Environment extends Observer {
         switch (currentState) {
             case menu:
                 return GameMenu.newInstance(gameController);
+            case level:
+                return null;
         }
         return null;
     }
