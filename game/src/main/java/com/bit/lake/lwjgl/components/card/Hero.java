@@ -37,11 +37,11 @@ public class Hero extends Card  {
         this.currentMaxAttackStrength = deliveredCurrentAttackStrength;
     }
 
-    public static Hero newInstance(float x, float y, final TargetAction targetAction, String deliveredName, int deliveredCurrentMaxLife, int deliveredCurrentAttackStrength)
+    public static Hero newInstance(float x, float y, ComponentTextureName textureName, final TargetAction targetAction, String deliveredName, int deliveredCurrentMaxLife, int deliveredCurrentAttackStrength)
     {
         if (instance == null)
         {
-            instance = new Hero(x, y, targetAction, deliveredName, deliveredCurrentMaxLife, deliveredCurrentAttackStrength);
+            instance = new Hero(x, y, textureName, targetAction, deliveredName, deliveredCurrentMaxLife, deliveredCurrentAttackStrength);
         }
         return instance;
     }
@@ -53,15 +53,7 @@ public class Hero extends Card  {
             // end game
         }
     }
-    // Hero
-    public Hero(float x, float y, final TargetAction targetAction, String deliveredName, int deliveredCurrentMaxLife, int deliveredCurrentAttackStrength)
-    {
-        super(x, y, InternalTextureLoader.loadTexture(ComponentTextureName.hero), targetAction);
-        name = deliveredName;
-        currentMaxLife = deliveredCurrentMaxLife;
-        currentLife = deliveredCurrentMaxLife;
-        currentAttackStrength = deliveredCurrentAttackStrength;
-    }
+
     // Life
     public void decreaseCurrentLife(int damageValue)
     {
