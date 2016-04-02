@@ -27,7 +27,6 @@ public abstract class AbstractComponent extends Observable implements Component 
     private TargetAction targetAction;
 
     public AbstractComponent(final float x, final float y, final String text, final TargetAction targetAction) {
-        GameConfiguration gameConfiguration = new GameConfiguration();
         setX(x);
         setY(y);
         width = baseTexture.getTextureWidth();
