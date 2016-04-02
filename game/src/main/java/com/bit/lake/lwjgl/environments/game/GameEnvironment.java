@@ -3,7 +3,7 @@ package com.bit.lake.lwjgl.environments.game;
 import com.bit.lake.lwjgl.components.ComponentTextureName;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
-import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
+import com.bit.lake.lwjgl.container.row.GridLayoutContainer;
 import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.game.GameController;
@@ -19,8 +19,14 @@ public class GameEnvironment extends AbstractEnvironment {
     private GameController controller;
 
     private GameEnvironment() {
-        FlowLayoutContainer container = new FlowLayoutContainer();
-        container.add(new Button(10, 10, TargetAction.nextRound, ComponentTextureName.menuButton));
+        GridLayoutContainer container = new GridLayoutContainer();
+
+        for (int y = 0; y < container.rowDefMap.size(); y++) {
+
+            for (int x = 0; x < container.rowDefMap.get(y).maxColumns; x++) {
+                container.addComponent(x, y, new Button(10, 10, LocalizationKey.gameNextRound, TargetAction.nextRound));
+            }
+        }
         setLayout(container);
     }
 

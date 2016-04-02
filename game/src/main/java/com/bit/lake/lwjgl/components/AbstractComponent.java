@@ -75,7 +75,7 @@ public abstract class AbstractComponent extends Observable implements Component 
         RenderingUtils.renderTexturedQuad(x, y, width, height, baseTexture);
         int textWidth = trueTypeFont.getWidth(componentText);
         int textHeight = trueTypeFont.getHeight();
-        trueTypeFont.drawString(x + (width / 2) - textWidth, y + (height / 2) - textHeight, componentText);
+        trueTypeFont.drawString(x + ((width - textWidth )/ 2) , y + ((height - textHeight)/ 2) , componentText);
     }
 
     protected abstract void handleMouseEvent();

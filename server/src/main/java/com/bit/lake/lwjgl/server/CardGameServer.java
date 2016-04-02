@@ -6,6 +6,8 @@ import com.bit.lake.lwjgl.user.GamePhase;
 import com.bit.lake.lwjgl.user.User;
 
 import javax.smartcardio.Card;
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
@@ -76,5 +78,21 @@ public class CardGameServer extends UnicastRemoteObject implements GameServer {
             User nextUser = logic.nextPlayer();
             clients.get(nextUser.getUserId()).switchPhase(nextUser, GameLogic.PhaseLengthInSec);
         }
+    }
+
+    public static void main(String...args)throws Exception
+    {
+        // Assign a security manager, in the event that dynamic
+        // classes are loaded
+        if (System.getSecurityManager() == null)
+            System.setSecurityManager ( new RMISecurityManager() );
+
+        // Create an instance of our power service server ...
+        CardGameServer server = new CardGameServer();
+
+        // ... and bind it with the RMI Registry
+        Naming.bind ("CardGameServer", server);
+
+        System.out.println ("Service bound....");
     }
 }

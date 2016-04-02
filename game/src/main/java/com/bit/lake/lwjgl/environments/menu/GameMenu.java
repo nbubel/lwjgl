@@ -14,10 +14,12 @@ import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.game.GameController;
 import com.bit.lake.lwjgl.game.GameState;
+import com.bit.lake.lwjgl.utils.LaunchJre;
 import com.bit.lake.lwjgl.utils.Timer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 import java.util.Observable;
 
 /**
@@ -30,22 +32,13 @@ public final class GameMenu extends AbstractEnvironment {
     private static GameMenu instance;
     private GameController gameController;
     private Entity background;
-    private List<Hashtag> hashtags = new ArrayList<>();
 
     private GameMenu() {
-        GameConfiguration configuration = new GameConfiguration();
         background = new BackgroundEntity(0, 0, EntityTextureName.menuBackgroundTexture);
-        float startX = 10;
-        float startY = 40;
-        for (Hashtag tag : configuration.getHashtags()) {
-            tag.setY(startY);
-            startY += 50;
-        }
-
         setLayout(new FlowLayoutContainer());
-        Button startButton = new Button(10, 10, TargetAction.quit, ComponentTextureName.menuButton);
+        Button startButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, TargetAction.newGame, ComponentTextureName.menuButton);
+        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.joinGame);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);
@@ -73,6 +66,8 @@ public final class GameMenu extends AbstractEnvironment {
                     gameController.shutdown();
                     break;
                 case newGame:
+                    LaunchJre.launch(Arrays.asList(""));
+                case joinGame:
                     gameController.updateState(GameState.level);
                     break;
             }
@@ -83,6 +78,5 @@ public final class GameMenu extends AbstractEnvironment {
     public void render(Timer timer) {
         background.render();
         super.render(timer);
-
     }
 }
