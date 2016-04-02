@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl.environments.menu;
 
+import com.bit.lake.lwjgl.components.button.Button;
 import com.bit.lake.lwjgl.environments.Environment;
 
 /**
@@ -10,8 +11,10 @@ import com.bit.lake.lwjgl.environments.Environment;
 public final class GameMenu implements Environment {
 
     private static GameMenu instance;
+    private Button button;
 
     private GameMenu() {
+        button = new Button(10, 10);
     }
 
     public static Environment newInstance() {
@@ -22,6 +25,6 @@ public final class GameMenu implements Environment {
 
     @Override
     public void render() {
-
+        button.renderComponent();
     }
 }
