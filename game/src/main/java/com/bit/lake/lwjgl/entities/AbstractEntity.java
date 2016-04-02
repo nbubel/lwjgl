@@ -1,6 +1,7 @@
 package com.bit.lake.lwjgl.entities;
 
 import com.bit.lake.lwjgl.utils.InternalTextureLoader;
+import com.bit.lake.lwjgl.utils.RenderingUtils;
 import org.newdawn.slick.opengl.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -40,21 +41,6 @@ public abstract class AbstractEntity implements Entity {
 
     @Override
     public void render() {
-        texture.bind();
-        glBegin(GL_QUADS);
-        {
-            glTexCoord2d(0, 0);
-            glVertex2f(x, y);
-
-            glTexCoord2d(1, 0);
-            glVertex2f(x + width, y);
-
-            glTexCoord2d(1, 1);
-            glVertex2f(x + width, y + height);
-
-            glTexCoord2d(0, 1);
-            glVertex2f(x, y + height);
-        }
-        glEnd();
+        RenderingUtils.renderTexturedQuad(x, y, width, height, texture);
     }
 }
