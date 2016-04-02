@@ -29,8 +29,8 @@ public abstract class AbstractComponent extends Observable implements Component 
     public AbstractComponent(final float x, final float y, final String text, final TargetAction targetAction) {
         setX(x);
         setY(y);
-        width = baseTexture.getTextureWidth();
-        height = baseTexture.getTextureHeight();
+        width = 100;
+        height = 50;
         trueTypeFont = InternalFontLoader.loadFont();
         componentText = text;
         this.targetAction = targetAction;
