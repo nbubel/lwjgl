@@ -2,6 +2,7 @@ package com.bit.lake.lwjgl.game;
 
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.environments.menu.GameMenu;
+import com.bit.lake.lwjgl.utils.GameState;
 import org.apache.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -26,12 +27,7 @@ public final class GameController {
     private static final Logger LOGGER = Logger.getLogger(GameController.class);
 
     private Timer timer;
-    private GameState currentState = GameState.MENU;
-    private Map<GameState, Environment> environmentMap = new HashMap<>();
-
-    private enum GameState {
-        MENU, LEVEL
-    }
+    private GameState currentState = GameState.menu;
 
     public GameController() {
         Display.setTitle("LWJGL Card Game with Twitter");
@@ -66,17 +62,10 @@ public final class GameController {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         timer = new Timer();
-
-        environmentMap.put(GameState.MENU, new GameMenu());
     }
 
     private void handleStates() {
-        switch (currentState) {
-            case MENU:
-                break;
-            case LEVEL:
-                break;
-        }
+
     }
 
     private ByteBuffer[] loadIcon() {
