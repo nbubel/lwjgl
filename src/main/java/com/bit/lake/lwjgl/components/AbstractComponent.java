@@ -106,6 +106,6 @@ public abstract class AbstractComponent extends Observable implements Component 
 
     @Override
     public TargetAction getAction() {
-        return null;
+        return targetAction;
     }
 }
