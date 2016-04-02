@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl.game;
 
+import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.utils.GameState;
 import com.bit.lake.lwjgl.utils.Timer;
@@ -25,12 +26,13 @@ public final class GameController {
 
     private Timer timer;
     private GameState currentState = GameState.menu;
+    private GameConfiguration gameConfiguration = new GameConfiguration();
 
     public GameController() {
         Display.setTitle("LWJGL Card Game with Twitter");
         try {
             Display.setIcon(loadIcon());
-            Display.setDisplayMode(new DisplayMode(800, 600));
+            Display.setDisplayMode(gameConfiguration.getDisplayMode());
             Display.create();
         } catch (LWJGLException e) {
             LOGGER.error("Cannot create opengl display!");
