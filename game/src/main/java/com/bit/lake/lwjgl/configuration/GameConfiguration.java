@@ -36,4 +36,8 @@ public final class GameConfiguration {
         return new DisplayMode(width, height);
     }
 
+    public int getFpsLimit() {
+        return configuration.getInt("game.fps.limit", 60);
+    }
+
 }

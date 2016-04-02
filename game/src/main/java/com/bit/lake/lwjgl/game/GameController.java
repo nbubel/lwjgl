@@ -47,7 +47,7 @@ public final class GameController {
             handleStates();
 
             Display.update();
-            Display.sync(60);
+            Display.sync(gameConfiguration.getFpsLimit());
         }
         shutdown();
     }
