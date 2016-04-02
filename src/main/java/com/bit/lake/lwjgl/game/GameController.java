@@ -46,7 +46,7 @@ public final class GameController {
 
             Display.update();
         }
-        Display.destroy();
+        shutdown();
     }
 
     private void initializeGame() {
@@ -77,5 +77,6 @@ public final class GameController {
 
     public void shutdown() {
         Display.destroy();
+        System.exit(0);
     }
 }
