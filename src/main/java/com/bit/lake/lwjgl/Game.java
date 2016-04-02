@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl;
 
+import com.bit.lake.lwjgl.game.GameController;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -10,14 +11,7 @@ import org.lwjgl.opengl.DisplayMode;
 public final class Game {
 
     public static void main(String[] args) throws LWJGLException {
-        Display.setDisplayMode(new DisplayMode(800, 600));
-        Display.create();
-
-        while(!Display.isCloseRequested()) {
-            Display.update();
-        }
-
-        Display.destroy();
+        new GameController().start();
     }
 
 }
