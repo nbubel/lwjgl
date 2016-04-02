@@ -1,11 +1,16 @@
 package com.bit.lake.lwjgl.configuration;
 
+import com.bit.lake.lwjgl.components.TargetAction;
+import com.bit.lake.lwjgl.components.hashtag.Hashtag;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.log4j.Logger;
 import org.lwjgl.opengl.DisplayMode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -41,5 +46,11 @@ public final class GameConfiguration {
     }
 
 
+    public List<Hashtag> getHashtags() {
+        String hashtagString = configuration.getString("game.hashtags");
+        List<Hashtag> hashtags = new ArrayList<>();
+        Arrays.asList(hashtagString.split(";")).forEach(hashtag -> hashtags.add(new Hashtag(0,0, "", TargetAction.quit)));
+        return hashtags;
+    }
 
 }

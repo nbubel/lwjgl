@@ -26,6 +26,17 @@ public abstract class AbstractComponent extends Observable implements Component 
     private String componentText;
     private TargetAction targetAction;
 
+    public AbstractComponent(final float x, final float y, final String text, final TargetAction targetAction) {
+        GameConfiguration gameConfiguration = new GameConfiguration();
+        setX(x);
+        setY(y);
+        width = baseTexture.getTextureWidth();
+        height = baseTexture.getTextureHeight();
+        trueTypeFont = InternalFontLoader.loadFont();
+        componentText = text;
+        this.targetAction = targetAction;
+    }
+
     public AbstractComponent(final float x, final float y, final Texture texture, final LocalizationKey localizationKey, final TargetAction targetAction) {
         GameConfiguration gameConfiguration = new GameConfiguration();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("game", gameConfiguration.getConfiguredLocale());
