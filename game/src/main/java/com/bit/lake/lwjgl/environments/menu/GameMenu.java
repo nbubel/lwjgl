@@ -25,7 +25,7 @@ public final class GameMenu extends AbstractEnvironment {
         setLayout(new FlowLayoutContainer());
         Button startButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.quit);
+        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.newGame);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);
