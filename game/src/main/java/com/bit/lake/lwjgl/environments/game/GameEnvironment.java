@@ -20,7 +20,7 @@ public class GameEnvironment extends AbstractEnvironment {
 
     private GameEnvironment() {
         FlowLayoutContainer container = new FlowLayoutContainer();
-        container.add(new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.quit));
+        container.add(new Button(10, 10, LocalizationKey.gameNextRound, TargetAction.quit));
         setLayout(container);
     }
 
