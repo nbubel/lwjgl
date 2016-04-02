@@ -25,6 +25,8 @@ public class Button extends AbstractComponent {
             if (isMouseClickInRange()) {
                 LOGGER.info("Clicked");
                 triggerCooldown();
+                setChanged();
+                notifyObservers();
             }
         }
     }
