@@ -1,3 +1,4 @@
 rootProject.name = 'lwjgl-card-game'
 include 'game'
+include 'server'
 
