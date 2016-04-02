@@ -9,7 +9,7 @@ public class TwitterClientTest {
     public void readTwitterStream() throws Exception {
         Twitter twitter = TwitterFactory.getSingleton();
         //List<Status> statuses = twitter.getHomeTimeline();
-        QueryResult result = twitter.search(new Query("test"));
+        QueryResult result = twitter.search(new Query("test").locale("DE"));
 
         System.out.println("Showing home timeline.");
         for (Status status : result.getTweets()) {
