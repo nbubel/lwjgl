@@ -31,6 +31,8 @@ public final class GameMenu extends AbstractEnvironment {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("notification");
+        if (o instanceof Button) {
+
+        }
     }
 }
