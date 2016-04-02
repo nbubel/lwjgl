@@ -2,6 +2,7 @@ package com.bit.lake.lwjgl.game;
 
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.utils.GameState;
+import com.bit.lake.lwjgl.utils.Timer;
 import org.apache.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -12,7 +13,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Timer;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -63,7 +63,7 @@ public final class GameController {
     private void handleStates() {
         Environment environment = Environment.getInstance(currentState);
         assert environment != null;
-        environment.render();
+        environment.render(timer);
     }
 
     private ByteBuffer[] loadIcon() {

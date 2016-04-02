@@ -2,6 +2,7 @@ package com.bit.lake.lwjgl.environments;
 
 import com.bit.lake.lwjgl.components.Component;
 import com.bit.lake.lwjgl.container.Container;
+import com.bit.lake.lwjgl.utils.Timer;
 
 /**
  * @author Patrick Wilmes
@@ -20,7 +21,7 @@ public abstract class AbstractEnvironment implements Environment {
     }
 
     @Override
-    public void render() {
+    public void render(final Timer timer) {
         container.render();
     }
 }

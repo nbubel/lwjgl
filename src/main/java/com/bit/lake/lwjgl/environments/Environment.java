@@ -6,6 +6,7 @@ import com.bit.lake.lwjgl.container.Container;
 import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.menu.GameMenu;
 import com.bit.lake.lwjgl.utils.GameState;
+import com.bit.lake.lwjgl.utils.Timer;
 
 import java.util.Observer;
 
@@ -25,7 +26,7 @@ public interface Environment extends Observer {
 
     void setLayout(final Container container);
 
-    void render();
+    void render(final Timer timer);
 
     void add(Component component);
 }
