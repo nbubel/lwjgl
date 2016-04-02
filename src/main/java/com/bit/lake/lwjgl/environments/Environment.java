@@ -5,6 +5,7 @@ import com.bit.lake.lwjgl.components.Component;
 import com.bit.lake.lwjgl.container.Container;
 import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.menu.GameMenu;
+import com.bit.lake.lwjgl.game.GameController;
 import com.bit.lake.lwjgl.utils.GameState;
 import com.bit.lake.lwjgl.utils.Timer;
 
@@ -15,10 +16,10 @@ import java.util.Observer;
  */
 public interface Environment extends Observer {
 
-    static Environment getInstance(GameState currentState) {
+    static Environment getInstance(GameState currentState, GameController gameController) {
         switch (currentState) {
             case menu:
-                Environment environment = GameMenu.newInstance();
+                Environment environment = GameMenu.newInstance(gameController);
                 return environment;
         }
         return null;

@@ -17,4 +17,6 @@ public interface Component {
     float getWidth();
 
     float getHeight();
+
+    TargetAction getAction();
 }

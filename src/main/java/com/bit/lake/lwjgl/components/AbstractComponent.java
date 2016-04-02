@@ -101,4 +101,9 @@ public abstract class AbstractComponent extends Observable implements Component 
             cooldown = false;
         }).run();
     }
+
+    @Override
+    public TargetAction getAction() {
+        return null;
+    }
 }

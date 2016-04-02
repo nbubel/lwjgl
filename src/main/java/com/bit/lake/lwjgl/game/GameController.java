@@ -61,7 +61,7 @@ public final class GameController {
     }
 
     private void handleStates() {
-        Environment environment = Environment.getInstance(currentState);
+        Environment environment = Environment.getInstance(currentState, this);
         assert environment != null;
         environment.render(timer);
     }
@@ -75,4 +75,7 @@ public final class GameController {
         return null;
     }
 
+    public void shutdown() {
+        Display.destroy();
+    }
 }
