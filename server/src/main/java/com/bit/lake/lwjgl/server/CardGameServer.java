@@ -80,6 +80,12 @@ public class CardGameServer extends UnicastRemoteObject implements GameServer {
         }
     }
 
+    @Override
+    public void reset() {
+        logic.reset();
+        users.values().forEach(logic::addPlayer);
+    }
+
     public static void main(String...args)throws Exception
     {
         // Assign a security manager, in the event that dynamic

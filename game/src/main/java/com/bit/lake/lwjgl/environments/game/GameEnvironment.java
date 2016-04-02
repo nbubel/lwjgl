@@ -12,6 +12,11 @@ import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.game.GameController;
 import com.bit.lake.lwjgl.utils.Timer;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
+import java.rmi.RemoteException;
 import java.util.Observable;
 
 /**
@@ -21,6 +26,10 @@ public class GameEnvironment extends AbstractEnvironment {
 
     private static GameEnvironment instance;
     private GameController controller;
+
+    private GameServer server;
+    private String host;
+
     private Entity background;
     private GameEnvironment() {
         background = new BackgroundEntity(0, 0, EntityTextureName.gameBackground);
@@ -47,6 +56,18 @@ public class GameEnvironment extends AbstractEnvironment {
         this.controller = controller;
     }
 
+    public void connectToServer(String host) {
+        if(host == null) host = "localhost";
+
+        if(host.equals(this.host)) {
+            server.reset();
+            return;
+        }
+        this.host = host;
+
+        server = connect(host);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
 
@@ -56,5 +77,28 @@ public class GameEnvironment extends AbstractEnvironment {
     public void render(Timer timer) {
         background.render();
         super.render(timer);
+    }
+
+
+    private static GameServer connect(String host) {
+
+        // Assign security manager
+        if (System.getSecurityManager() == null)
+        {
+            System.setSecurityManager   (new RMISecurityManager());
+        }
+
+        // Call registry for PowerService
+        try {
+            return (GameServer) Naming.lookup
+                    ("rmi://" + host + "/GameServer");
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

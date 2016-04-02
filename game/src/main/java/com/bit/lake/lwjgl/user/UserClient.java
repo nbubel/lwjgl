@@ -1,8 +1,13 @@
 package com.bit.lake.lwjgl.user;
 
 import com.bit.lake.lwjgl.api.GameClient;
+import com.bit.lake.lwjgl.api.GameServer;
 
 import javax.smartcardio.Card;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -11,6 +16,7 @@ import java.util.List;
  * Created by michael on 02.04.16.
  */
 public final class UserClient extends UnicastRemoteObject implements GameClient {
+
     protected UserClient() throws RemoteException {
     }
 
