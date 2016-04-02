@@ -1,12 +1,11 @@
 package com.bit.lake.lwjgl.game;
 
+import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.environments.Environment;
-import com.bit.lake.lwjgl.utils.GameState;
 import com.bit.lake.lwjgl.utils.Timer;
 import org.apache.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.ImageIOImageData;
 
 import javax.imageio.ImageIO;
@@ -25,12 +24,13 @@ public final class GameController {
 
     private Timer timer;
     private GameState currentState = GameState.menu;
+    private GameConfiguration gameConfiguration = new GameConfiguration();
 
     public GameController() {
         Display.setTitle("LWJGL Card Game with Twitter");
         try {
             Display.setIcon(loadIcon());
-            Display.setDisplayMode(new DisplayMode(800, 600));
+            Display.setDisplayMode(gameConfiguration.getDisplayMode());
             Display.create();
         } catch (LWJGLException e) {
             LOGGER.error("Cannot create opengl display!");
@@ -41,15 +41,17 @@ public final class GameController {
         initializeGame();
 
         while (!Display.isCloseRequested()) {
-
+            glClear(GL_COLOR_BUFFER_BIT);
             handleStates();
 
             Display.update();
+            Display.sync(gameConfiguration.getFpsLimit());
         }
         shutdown();
     }
 
     private void initializeGame() {
+        LOGGER.info("");
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
@@ -68,11 +70,15 @@ public final class GameController {
 
     private ByteBuffer[] loadIcon() {
         try {
-            return new ByteBuffer[]{ new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("resources/game.png")), false, false, null)};
+            return new ByteBuffer[]{new ImageIOImageData().imageToByteBuffer(ImageIO.read(new File("resources/game.png")), false, false, null)};
         } catch (IOException e) {
             LOGGER.warn("Cannot load application icon versus.ico!", e);
         }
         return null;
+    }
+
+    public void updateState(final GameState gameState) {
+        currentState = gameState;
     }
 
     public void shutdown() {
