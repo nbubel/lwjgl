@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl.environments.game;
 
+import com.bit.lake.lwjgl.api.GameServer;
 import com.bit.lake.lwjgl.components.ComponentTextureName;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
