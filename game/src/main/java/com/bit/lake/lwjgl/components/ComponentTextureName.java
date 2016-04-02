@@ -6,7 +6,8 @@ import com.bit.lake.lwjgl.utils.TextureName;
  * @author Patrick Wilmes
  */
 public enum ComponentTextureName implements TextureName {
-    menuButton("textures/start/play.png");
+    menuButton("textures/start/play.png"),
+    gameBackground("textures/grid/bg.png");
 
     private String textureName;
 
