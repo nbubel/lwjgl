@@ -1,5 +1,6 @@
 package com.bit.lake.lwjgl.environments.game;
 
+import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
 import com.bit.lake.lwjgl.game.GameController;
@@ -15,6 +16,7 @@ public class GameEnvironment extends AbstractEnvironment {
     private GameController controller;
 
     private GameEnvironment() {
+        setLayout(new FlowLayoutContainer());
     }
 
     public static Environment newInstance(GameController controller) {
