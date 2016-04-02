@@ -1,5 +1,8 @@
 package com.bit.lake.lwjgl.environments.game;
 
+import com.bit.lake.lwjgl.components.LocalizationKey;
+import com.bit.lake.lwjgl.components.TargetAction;
+import com.bit.lake.lwjgl.components.button.Button;
 import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
@@ -16,7 +19,9 @@ public class GameEnvironment extends AbstractEnvironment {
     private GameController controller;
 
     private GameEnvironment() {
-        setLayout(new FlowLayoutContainer());
+        FlowLayoutContainer container = new FlowLayoutContainer();
+        container.add(new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.quit));
+        setLayout(container);
     }
 
     public static Environment newInstance(GameController controller) {
