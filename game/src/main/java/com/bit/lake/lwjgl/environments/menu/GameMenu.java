@@ -50,6 +50,9 @@ public final class GameMenu extends AbstractEnvironment {
             switch (action) {
                 case quit:
                     gameController.shutdown();
+                    break;
+                case newGame:
+                    break;
             }
         }
     }
