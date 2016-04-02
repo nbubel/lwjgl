@@ -1,0 +1,20 @@
+group 'com.bit.lake'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.l33tlabs.twl:pngdecoder:1.0'
+    compile 'org.slick2d:slick2d-core:1.0.1'
+    compile 'org.lwjgl.lwjgl:lwjgl:2.9.3'
+    compile 'commons-configuration:commons-configuration:1.10'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
