@@ -40,4 +40,6 @@ public final class GameConfiguration {
         return configuration.getInt("game.fps.limit", 60);
     }
 
+
+
 }
