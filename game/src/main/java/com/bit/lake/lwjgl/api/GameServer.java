@@ -21,4 +21,6 @@ public interface GameServer extends Remote {
     User attack(List<Integer> cardIds, UUID userId);
     User defend(Map<Card, List<Card>> mapping, UUID userId);
     void finishPhase(UUID userId);
+
+    void reset();
 }

@@ -9,6 +9,7 @@ import com.bit.lake.lwjgl.entities.EntityTextureName;
 import com.bit.lake.lwjgl.entities.background.BackgroundEntity;
 import com.bit.lake.lwjgl.environments.AbstractEnvironment;
 import com.bit.lake.lwjgl.environments.Environment;
+import com.bit.lake.lwjgl.environments.game.GameEnvironment;
 import com.bit.lake.lwjgl.game.GameController;
 import com.bit.lake.lwjgl.game.GameState;
 import com.bit.lake.lwjgl.utils.LaunchJre;
@@ -53,6 +54,7 @@ public final class GameMenu extends AbstractEnvironment {
 
     @Override
     public void update(Observable o, Object arg) {
+        String host = null;
         if (o instanceof Button) {
             Button button = (Button) o;
             TargetAction action = button.getAction();
@@ -62,7 +64,13 @@ public final class GameMenu extends AbstractEnvironment {
                     break;
                 case newGame:
                     LaunchJre.launch(Arrays.asList(""));
+                    host = "localhost";
                 case joinGame:
+                    if (host == null){
+                        // TODO ask for domain
+                    }
+
+                    ((GameEnvironment)GameEnvironment.newInstance(gameController)).connectToServer(host);
                     gameController.updateState(GameState.level);
                     break;
             }
