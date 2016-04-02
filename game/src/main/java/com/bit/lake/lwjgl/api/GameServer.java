@@ -11,7 +11,7 @@ import java.util.UUID;
  * Created by michael on 02.04.16.
  */
 public interface GameServer extends Remote {
-    User connect();
+    User connect(GameClient client);
     void disconnect(UUID userId);
     void newGame(UUID userId);
 
