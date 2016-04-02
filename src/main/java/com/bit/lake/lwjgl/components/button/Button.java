@@ -16,8 +16,8 @@ public class Button extends AbstractComponent {
 
     private static final Logger LOGGER = Logger.getLogger(Button.class);
 
-    public Button(float x, float y, final TargetAction targetAction) {
-        super(x, y, InternalTextureLoader.loadTexture(ComponentTextureName.menuButton), LocalizationKey.btnMenuText, targetAction);
+    public Button(float x, float y, final LocalizationKey text, final TargetAction targetAction) {
+        super(x, y, InternalTextureLoader.loadTexture(ComponentTextureName.menuButton), text, targetAction);
     }
 
     @Override
