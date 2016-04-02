@@ -11,8 +11,6 @@ import org.newdawn.slick.opengl.Texture;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
-import static org.lwjgl.opengl.GL11.*;
-
 /**
  * @author Patrick Wilmes
  */
