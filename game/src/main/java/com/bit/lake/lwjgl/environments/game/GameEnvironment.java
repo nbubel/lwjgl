@@ -24,7 +24,7 @@ public class GameEnvironment extends AbstractEnvironment {
         for (int y = 0; y < container.rowDefMap.size(); y++) {
 
             for (int x = 0; x < container.rowDefMap.get(y).maxColumns; x++) {
-                container.addComponent(x, y, new Button(10, 10, LocalizationKey.gameNextRound, TargetAction.nextRound));
+                container.addComponent(x, y, new Button(10, 10, TargetAction.nextRound, ComponentTextureName.menuButton));
             }
         }
         setLayout(container);

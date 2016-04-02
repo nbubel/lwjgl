@@ -36,9 +36,9 @@ public final class GameMenu extends AbstractEnvironment {
     private GameMenu() {
         background = new BackgroundEntity(0, 0, EntityTextureName.menuBackgroundTexture);
         setLayout(new FlowLayoutContainer());
-        Button startButton = new Button(10, 10, LocalizationKey.menuButtonExit, TargetAction.quit);
+        Button startButton = new Button(10, 10, TargetAction.newGame, ComponentTextureName.menuButton);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, LocalizationKey.menuButtonNewGame, TargetAction.joinGame);
+        Button exitButton = new Button(10, 10, TargetAction.joinGame, ComponentTextureName.menuButton);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);
