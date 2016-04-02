@@ -75,6 +75,10 @@ public final class GameController {
         return null;
     }
 
+    public void updateState(final GameState gameState) {
+        currentState = gameState;
+    }
+
     public void shutdown() {
         Display.destroy();
         System.exit(0);
