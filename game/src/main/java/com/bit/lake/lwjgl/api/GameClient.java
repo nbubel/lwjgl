@@ -10,7 +10,7 @@ import javax.smartcardio.Card;
  */
 public interface GameClient {
     void attackedWith(Card card);
-    void lostHealth(int delta);
+    void updateHealth(int delta);
     void switchPhase(GamePhase newPhase, int timeout);
 
     void defeated();
