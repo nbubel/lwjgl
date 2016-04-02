@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class GridLayoutContainer extends AbstractContainer {
 
+    public static final int PADDING = 20;
+
     public static class RowDef {
         public int maxColumns;
         public int width;
@@ -17,11 +19,12 @@ public class GridLayoutContainer extends AbstractContainer {
     }
 
     public GridLayoutContainer() {
-        int width = Display.getWidth();
-        addRowDef(0, 10, width / 10, 100);
-        addRowDef(1, 4, width / 4, 200);
-        addRowDef(2, 4, width / 4, 200);
-        addRowDef(3, 10, width / 10, 100);
+        int width = Display.getWidth() - (PADDING * 2);
+        addRowDef(0, 3, width / 3, 100);
+        addRowDef(1, 3, width / 3, 100);
+        addRowDef(2, 3, width / 3, 100);
+        addRowDef(3, 3, width / 3, 100);
+        addRowDef(4, 3, width / 3, 100);
     }
 
     private Map<Integer, Map<Integer, Component>> contentMap = new HashMap<>();
@@ -29,8 +32,8 @@ public class GridLayoutContainer extends AbstractContainer {
 
     @Override
     public void render() {
-        int currentX = 0;
-        int currentY = 0;
+        int currentX = PADDING;
+        int currentY = PADDING;
 
         for (Integer yLine : rowDefMap.keySet()) {
             RowDef def = rowDefMap.get(yLine);
@@ -42,8 +45,8 @@ public class GridLayoutContainer extends AbstractContainer {
                     Component component = compMap.get(x);
                     if (component != null) {
                         // center
-                        float centerX = currentX + (def.width / 2) - (component.getWidth() / 2);
-                        float centerY = currentY + (def.height / 2) - (component.getHeight() / 2);
+                        float centerX = currentX + ((def.width - component.getWidth()) / 2);
+                        float centerY = currentY + ((def.height - component.getHeight()) / 2);
 
                         component.setX(centerX);
                         component.setY(centerY);
@@ -53,7 +56,7 @@ public class GridLayoutContainer extends AbstractContainer {
 
                 currentX += def.width;
             }
-            currentX = 0;
+            currentX = PADDING;
             currentY += def.height;
         }
 
