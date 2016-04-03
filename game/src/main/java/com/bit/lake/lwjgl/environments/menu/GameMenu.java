@@ -1,11 +1,8 @@
 package com.bit.lake.lwjgl.environments.menu;
 
 import com.bit.lake.lwjgl.components.ComponentTextureName;
-import com.bit.lake.lwjgl.components.LocalizationKey;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
-import com.bit.lake.lwjgl.components.hashtag.Hashtag;
-import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.entities.Entity;
 import com.bit.lake.lwjgl.entities.EntityTextureName;
@@ -18,8 +15,6 @@ import com.bit.lake.lwjgl.game.GameState;
 import com.bit.lake.lwjgl.utils.LaunchJre;
 import com.bit.lake.lwjgl.utils.Timer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -68,14 +63,14 @@ public final class GameMenu extends AbstractEnvironment {
                     gameController.shutdown();
                     break;
                 case newGame:
-                    LaunchJre.launch(Arrays.asList(""));
+                    //LaunchJre.launch(Arrays.asList(""));
                     host = "localhost";
                 case joinGame:
-                    if (host == null){
+                    if (host == null) {
                         // TODO ask for domain
                     }
 
-                    ((GameEnvironment)GameEnvironment.newInstance(gameController)).connectToServer(host);
+                    //((GameEnvironment) GameEnvironment.newInstance(gameController)).connectToServer(host);
                     gameController.updateState(GameState.level);
                     break;
             }
