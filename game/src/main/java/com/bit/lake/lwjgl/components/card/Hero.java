@@ -1,13 +1,7 @@
 package com.bit.lake.lwjgl.components.card;
+
 import com.bit.lake.lwjgl.components.ComponentTextureName;
-import com.bit.lake.lwjgl.components.LocalizationKey;
 import com.bit.lake.lwjgl.components.TargetAction;
-import com.bit.lake.lwjgl.environments.Environment;
-import com.bit.lake.lwjgl.environments.menu.GameMenu;
-import com.bit.lake.lwjgl.game.GameController;
-import com.bit.lake.lwjgl.utils.InternalTextureLoader;
-import com.bit.lake.lwjgl.utils.MouseButton;
-import org.lwjgl.input.Mouse;
 /**
  * Created by tom on 02.04.2016.
  */
