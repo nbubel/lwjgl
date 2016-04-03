@@ -2,6 +2,7 @@ package com.bit.lake.lwjgl.components;
 
 import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.utils.InternalFontLoader;
+import com.bit.lake.lwjgl.utils.InternalTextureLoader;
 import com.bit.lake.lwjgl.utils.RenderingUtils;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -23,6 +24,14 @@ public abstract class AbstractComponent extends Observable implements Component 
     private boolean cooldown;
     private String componentText;
     private TargetAction targetAction;
+
+    public AbstractComponent(final float x, final float y, ComponentTextureName textureName) {
+        setX(x);
+        setY(y);
+        baseTexture = InternalTextureLoader.loadTexture(textureName);
+        width = baseTexture.getTextureWidth();
+        height = baseTexture.getTextureHeight();
+    }
 
     public AbstractComponent(final float x, final float y, final String text, final TargetAction targetAction) {
         setX(x);

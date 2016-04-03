@@ -1,87 +1,167 @@
 package com.bit.lake.lwjgl.components.card;
-
+import com.bit.lake.lwjgl.components.ComponentTextureName;
+import com.bit.lake.lwjgl.components.LocalizationKey;
+import com.bit.lake.lwjgl.components.TargetAction;
+import com.bit.lake.lwjgl.environments.Environment;
+import com.bit.lake.lwjgl.environments.menu.GameMenu;
+import com.bit.lake.lwjgl.game.GameController;
+import com.bit.lake.lwjgl.utils.InternalTextureLoader;
+import com.bit.lake.lwjgl.utils.MouseButton;
+import org.lwjgl.input.Mouse;
 /**
  * Created by tom on 02.04.2016.
  */
 public class Hero extends Card  {
-
-    private int life;
+    private int globalMaxconvertedResources;
+    private int currentMaxConvertedResources;
+    private int currentConvertedResources;
+    private int costsResourceZero;
+    private int costsResourceOne;
+    private int costsResourceTwo;
+    private int costsResourceThree;
+    private int costsResourceFour;
+    private int costsResourceFive;
+    private int globalMaxLife;
+    private int currentMaxLife;
     private int currentLife;
-    private int attackStrength;
+    private int globalMaxAttackStrength;
+    private int currentMaxAttackStrength;
+    private int currentAttackStrength;
+    private static Hero instance;
+    public enum currentStatus
+    {SUMMONSICKNESS, READY, TAPPED, HASBLOCKED}
 
-    private String name;
-
-    // Hero
-    Hero(int deliveredLife, int deliveredAttackStrength)
-    {
-        life = deliveredLife;
-        currentLife = life;
-        attackStrength = deliveredAttackStrength;
+    private Hero(float x, float y, ComponentTextureName textureName,  final TargetAction targetAction, String deliveredName, int deliveredCurrentMaxLife, int deliveredCurrentAttackStrength) {
+        super(x, y, textureName);
+        this.currentMaxLife = deliveredCurrentMaxLife;
+        this.currentMaxAttackStrength = deliveredCurrentAttackStrength;
     }
 
-    public void sufferDamage(int damage)
+    public static Hero newInstance(float x, float y, ComponentTextureName textureName, final TargetAction targetAction, String deliveredName, int deliveredCurrentMaxLife, int deliveredCurrentAttackStrength)
     {
-        int currentLifeAmount = getLife();
-        currentLifeAmount -= damage;
-        setLife(currentLifeAmount);
+        if (instance == null)
+        {
+            instance = new Hero(x, y, textureName, targetAction, deliveredName, deliveredCurrentMaxLife, deliveredCurrentAttackStrength);
+        }
+        return instance;
+    }
+    @Override
+    public void renderComponent() {
+        super.renderComponent();
+        if(currentLife == 0)
+        {
+            // end game
+        }
     }
 
-    public void decreaseAttackDamage(int decreaseHigh)
+    // Life
+    public void decreaseCurrentLife(int damageValue)
     {
-        int currentDamageAmount = getAttackStrength();
-        currentDamageAmount -= decreaseHigh;
-        setAttackStrength(currentDamageAmount);
+        int currentLifeHigh = getCurrentLife();
+        currentLifeHigh -= damageValue;
+        setCurrentLife(currentLifeHigh);
     }
-
-    public void increaseAttackDamage(int increaseHigh)
+    public void increaseCurrentLife(int healValue)
     {
-        int currentAttackStrength = getAttackStrength();
-        currentAttackStrength += increaseHigh;
-        setAttackStrength(currentAttackStrength);
+        int currentLifeHigh = getCurrentLife();
+        currentLifeHigh += healValue;
+        setCurrentLife(currentLifeHigh);
     }
-
+    public void decreaseCurrentMaxLife(int lifeDecrease)
+    {
+        int currentMaxLifeHigh = getCurrentMaxLife();
+        currentMaxLifeHigh -= lifeDecrease;
+        setCurrentMaxLife(currentMaxLifeHigh);
+    }
+    public void increaseCurrentMaxLife(int lifeIncrease)
+    {
+        int currentMaxLifeHigh = getCurrentMaxLife();
+        currentMaxLifeHigh += lifeIncrease;
+        setCurrentMaxLife(currentMaxLifeHigh);
+    }
+    // Attack Strength
+    public void decreaseCurrentAttackStrength(int decreaseValue)
+    {
+        int currentAttackStrengthHigh = getCurrentAttackStrength();
+        currentAttackStrengthHigh -= decreaseValue;
+        setCurrentLife(currentAttackStrengthHigh);
+    }
+    public void increaseCurrentAttackStrength(int increaseValue)
+    {
+        int currentAttackStrengthHigh = getCurrentAttackStrength();
+        currentAttackStrengthHigh += increaseValue;
+        setCurrentAttackStrength(currentAttackStrengthHigh);
+    }
+    public void decreaseCurrentMaxAttackStrength(int maxAttackStrengthDecrease)
+    {
+        int currentMaxAttackStrengthHigh = getCurrentMaxAttackStrength();
+        currentMaxAttackStrengthHigh -= maxAttackStrengthDecrease;
+        setCurrentMaxAttackStrength(currentMaxAttackStrengthHigh);
+    }
+    public void increaseCurrentMaxAttackStrength(int maxAttackStrengthIncrease)
+    {
+        int currentMaxAttackStrengthHigh = getCurrentMaxAttackStrength();
+        currentMaxAttackStrengthHigh += maxAttackStrengthIncrease;
+        setCurrentMaxAttackStrength(currentMaxAttackStrengthHigh);
+    }
     public void resetLife()
     {
-        life = getLife();
-        setCurrentLife(life);
+        currentMaxLife = getCurrentMaxLife();
+        setCurrentLife(currentMaxLife);
     }
-
-    public void increaseLife(int increaseHigh)
+    public void resetAttackStrength()
     {
-        int currentLife = getLife();
-        currentLife += increaseHigh;
-        setLife(currentLife);
+        currentMaxAttackStrength = getCurrentMaxAttackStrength();
+        setCurrentAttackStrength(currentMaxAttackStrength);
     }
-
-
-    public int getLife()
+    // Life
+    public int getGlobalMaxLife()
     {
-        return life;
+        return globalMaxLife;
     }
-
-    public void setLife(int life)
+    public int getCurrentMaxLife()
     {
-        this.life = life;
+        return currentMaxLife;
     }
-
     public int getCurrentLife()
     {
         return currentLife;
     }
-
+    public void setGlobalMaxLife(int globalMaxLife)
+    {
+        this.globalMaxLife = globalMaxLife;
+    }
+    public void setCurrentMaxLife(int currentMaxLife)
+    {
+        this.currentMaxLife = currentMaxLife;
+    }
     public void setCurrentLife(int currentLife)
     {
         this.currentLife = currentLife;
     }
-
-    public int getAttackStrength()
+    // AttackStrength
+    public int getGlobalMaxAttackStrength()
     {
-        return attackStrength;
+        return globalMaxAttackStrength;
     }
-
-    public void setAttackStrength(int attackStrength)
+    public int getCurrentMaxAttackStrength()
     {
-        this.attackStrength = attackStrength;
+        return currentMaxAttackStrength;
     }
-
+    public int getCurrentAttackStrength()
+    {
+        return currentAttackStrength;
+    }
+    public void setGlobalMaxAttackStrength(int globalMaxAttackStrength)
+    {
+        this.globalMaxAttackStrength = globalMaxAttackStrength;
+    }
+    public void setCurrentMaxAttackStrength(int currentMaxAttackStrength)
+    {
+        this.currentMaxAttackStrength = currentMaxAttackStrength;
+    }
+    public void setCurrentAttackStrength(int currentAttackStrength)
+    {
+        this.currentAttackStrength = currentAttackStrength;
+    }
 }

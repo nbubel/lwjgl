@@ -6,7 +6,8 @@ import com.bit.lake.lwjgl.utils.TextureName;
  * @author Patrick Wilmes
  */
 public enum EntityTextureName implements TextureName {
-    menuBackgroundTexture("textures/start/bg.png");
+    menuBackgroundTexture("textures/start/bg.png"),
+    gameBackground("textures/grid/bg.png");
 
     private String textureKey;
 

@@ -1,6 +1,7 @@
 package com.bit.lake.lwjgl;
 
 import com.bit.lake.lwjgl.game.GameController;
+import com.bit.lake.lwjgl.swing.HostInputDialog;
 import org.lwjgl.LWJGLException;
 
 /**

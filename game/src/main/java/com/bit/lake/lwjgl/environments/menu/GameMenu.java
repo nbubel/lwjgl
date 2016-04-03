@@ -64,14 +64,14 @@ public final class GameMenu extends AbstractEnvironment {
                     gameController.shutdown();
                     break;
                 case newGame:
-                    LaunchJre.launch(Arrays.asList(SERVER_JAR, "-Djava.security.policy=java.policy CardGameServer"));
+                    //LaunchJre.launch(Arrays.asList(SERVER_JAR, "-Djava.security.policy=java.policy CardGameServer"));
                     host = "localhost";
                 case joinGame:
-                    if (host == null){
+                    if (host == null) {
                         // TODO ask for domain
                     }
 
-                    ((GameEnvironment)GameEnvironment.newInstance(gameController)).connectToServer(host);
+                    //((GameEnvironment) GameEnvironment.newInstance(gameController)).connectToServer(host);
                     gameController.updateState(GameState.level);
                     break;
             }

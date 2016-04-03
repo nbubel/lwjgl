@@ -1,11 +1,14 @@
 package com.bit.lake.lwjgl.components.card;
 
+import com.bit.lake.lwjgl.components.AbstractComponent;
+import com.bit.lake.lwjgl.components.ComponentTextureName;
+
 /**
  * Created by tom on 02.04.2016.
  */
-public class Card {
+public class Card extends AbstractComponent {
 
-    private String name;
+    protected String name;
 
     private int converetedResources;
     private int costsResourceZero;
@@ -15,13 +18,17 @@ public class Card {
     private int costsResourceFour;
     private int costsResourceFive;
 
-    public Card()
+    public Card(float x, float y, ComponentTextureName textureName)
     {
-        name = "";
+        super(x, y, textureName);
     }
 
-    public int checkConvertedResources()
-    {
+    @Override
+    protected void handleMouseEvent() {
+
+    }
+
+    public int checkConvertedResources() {
         int convertedResources = costsResourceOne + costsResourceTwo + costsResourceThree + costsResourceFour + costsResourceFive;
         return convertedResources;
     }
