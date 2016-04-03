@@ -4,17 +4,18 @@ import com.bit.lake.lwjgl.user.GamePhase;
 import com.bit.lake.lwjgl.user.User;
 
 import javax.smartcardio.Card;
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
  * Created by michael on 02.04.16.
  */
 public interface GameClient {
-    void attackedBy(List<Card> cards);
-    void switchPhase(User user, int timeout);
-    void stateChanged(User user);
+    void attackedBy(List<Card> cards) throws RemoteException;
+    void switchPhase(User user, int timeout) throws RemoteException;
+    void stateChanged(User user) throws RemoteException;
 
-    void defeated();
-    void win();
-    void rematchRequest();
+    void defeated() throws RemoteException;
+    void win() throws RemoteException;
+    void rematchRequest() throws RemoteException;
 }
