@@ -55,7 +55,11 @@ public class GameEnvironment extends AbstractEnvironment {
         if(host == null) host = "localhost";
 
         if(host.equals(this.host)) {
-            server.reset();
+            try {
+                server.reset();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
             return;
         }
         this.host = host;
@@ -71,11 +75,6 @@ public class GameEnvironment extends AbstractEnvironment {
 
     private static GameServer connect(String host) {
 
-        // Assign security manager
-        if (System.getSecurityManager() == null)
-        {
-            System.setSecurityManager   (new RMISecurityManager());
-        }
 
         // Call registry for PowerService
         try {

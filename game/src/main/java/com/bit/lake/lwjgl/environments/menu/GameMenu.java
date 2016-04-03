@@ -1,11 +1,8 @@
 package com.bit.lake.lwjgl.environments.menu;
 
 import com.bit.lake.lwjgl.components.ComponentTextureName;
-import com.bit.lake.lwjgl.components.LocalizationKey;
 import com.bit.lake.lwjgl.components.TargetAction;
 import com.bit.lake.lwjgl.components.button.Button;
-import com.bit.lake.lwjgl.components.hashtag.Hashtag;
-import com.bit.lake.lwjgl.configuration.GameConfiguration;
 import com.bit.lake.lwjgl.container.row.FlowLayoutContainer;
 import com.bit.lake.lwjgl.entities.Entity;
 import com.bit.lake.lwjgl.entities.EntityTextureName;
@@ -18,8 +15,6 @@ import com.bit.lake.lwjgl.game.GameState;
 import com.bit.lake.lwjgl.utils.LaunchJre;
 import com.bit.lake.lwjgl.utils.Timer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -30,6 +25,7 @@ import java.util.Observable;
  */
 public final class GameMenu extends AbstractEnvironment {
 
+    private static final String SERVER_JAR = "";
     private static GameMenu instance;
     private GameController gameController;
     private Entity background;
@@ -39,7 +35,7 @@ public final class GameMenu extends AbstractEnvironment {
         setLayout(new FlowLayoutContainer());
         Button startButton = new Button(10, 10, TargetAction.newGame, ComponentTextureName.menuButton);
         startButton.addObserver(this);
-        Button exitButton = new Button(10, 10, TargetAction.joinGame, ComponentTextureName.menuButton);
+        Button exitButton = new Button(10, 10, TargetAction.quit, ComponentTextureName.menuButton);
         exitButton.addObserver(this);
         add(exitButton);
         add(startButton);
@@ -68,7 +64,7 @@ public final class GameMenu extends AbstractEnvironment {
                     gameController.shutdown();
                     break;
                 case newGame:
-                    LaunchJre.launch(Arrays.asList(""));
+                    LaunchJre.launch(Arrays.asList(SERVER_JAR, "-Djava.security.policy=java.policy CardGameServer"));
                     host = "localhost";
                 case joinGame:
                     if (host == null){
